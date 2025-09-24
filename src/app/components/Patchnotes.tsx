@@ -16,7 +16,7 @@ export default function PatchNotesList() {
     useEffect(() => {
         const loadPatchNotes = async () => {
             try {
-                const files = ['001'];
+                const files = ['001',"002"];
                 
                 const patchNotesData: PatchNote[] = [];
                 
@@ -73,6 +73,7 @@ export default function PatchNotesList() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                     className="p-6"
+                    id={patchNote.filename}
                 >
                     {patchNote.title && (
                         <h2 className="text-2xl font-bold text-blue-chill-800 mb-4">
@@ -80,8 +81,9 @@ export default function PatchNotesList() {
                         </h2>
                     )}
                     <div className="max-w-none">
-                        {/* A formázásnak a teljes megjelenitését megoldani majd */}
-                        <div className="whitespace-pre-wrap text-sm text-blue-chill-700"  dangerouslySetInnerHTML={{__html: patchNote.content}}/>
+                        <motion.div  initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 1}} className="whitespace-pre-wrap text-sm text-blue-chill-700 innerhtml"  dangerouslySetInnerHTML={{__html: patchNote.content}}/>
                     </div>
                 </motion.div>
             ))}

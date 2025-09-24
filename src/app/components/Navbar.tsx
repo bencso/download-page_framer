@@ -20,7 +20,7 @@ export default function Navbar() {
             <li>
                  <a
                 className="transition duration-500 relative after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-[1.5px] after:bg-blue-chill-600 after:transition-all after:duration-500 hover:after:w-full"
-                href="/patch-notes"
+                href="/patchnotes"
                 >
                 Patch notes
                 </a>

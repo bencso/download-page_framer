@@ -89,7 +89,7 @@ const PlatformCard = () => {
                         {completed ? 'Download Completed' : 'Download Installer'}
                     </motion.button>
                     <motion.div className="text-xs text-blue-chill-100">
-                        <a href="/patch-notes/0.1" className="hover:underline">Version 0.1</a>
+                        <a href="/patchnotes/0.1" className="hover:underline">Version 0.1</a>
                     </motion.div>
                 </motion.div>
             </motion.div>

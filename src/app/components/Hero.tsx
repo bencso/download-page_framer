@@ -47,7 +47,7 @@ export default function Hero() {
                 >
                     <div className="bg-blue-chill-300 p-2 rounded-full flex items-center justify-center">
                         <a
-                            href="/patch-notes"
+                            href="/patchnotes"
                             className="text-xs font-semibold text-blue-chill-900 flex items-center group"
                         >
                             Beta v0.0.0
