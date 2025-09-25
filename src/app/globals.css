@@ -2,22 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
-
-.innerhtml{
+.innerhtml {
     width: 50dvw;
     text-align: left;
     margin: auto;
 
-    h2{
+    h2 {
         font-size: large;
         font-weight: bold;
     }
 
-    h1{
+    h1 {
         font-size: medium;
     }
 
-    li{
+    b {
+        font-weight: bold;
+    }
+
+    i {
+        font-weight: 500;
+        font-style: italic;
+    }
+
+    li {
         list-style-type: disc;
         font-size: larger;
     }

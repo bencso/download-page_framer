@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Remarkable } from 'remarkable';
+import { getFiles } from '../utils/page';
 
 interface PatchNote {
     filename: string;
@@ -16,19 +17,18 @@ export default function PatchNotesList() {
     useEffect(() => {
         const loadPatchNotes = async () => {
             try {
-                const files = ['001',"002"];
-                
+                const files = await getFiles();
                 const patchNotesData: PatchNote[] = [];
-                
+
                 for (const filename of files) {
                     try {
-                        const response = await fetch(`/docs/${filename}-patch.md`);
+                        const response = await fetch(`/docs/${filename}`);
                         if (response.ok) {
                             const content = await response.text();
                             let contentSplit = content.split('---');
                             const title = contentSplit[1].split("title:")[1];
-                            
-                            
+
+
                             patchNotesData.push({
                                 filename,
                                 content: md.render(contentSplit[2].trim()),
@@ -40,7 +40,7 @@ export default function PatchNotesList() {
                         console.error(`Error loading ${filename}:`, error);
                     }
                 }
-                
+
                 setPatchNotes(patchNotesData);
             } catch (error) {
                 console.error('Error loading patch notes:', error);
@@ -73,7 +73,7 @@ export default function PatchNotesList() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                     className="p-6"
-                    id={patchNote.filename}
+                    id={"Version " + patchNote.filename?.split("-")[0].split("").join(".")}
                 >
                     {patchNote.title && (
                         <h2 className="text-2xl font-bold text-blue-chill-800 mb-4">
@@ -81,9 +81,9 @@ export default function PatchNotesList() {
                         </h2>
                     )}
                     <div className="max-w-none">
-                        <motion.div  initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.3}} className="whitespace-pre-wrap text-sm text-blue-chill-700 innerhtml"  dangerouslySetInnerHTML={{__html: patchNote.content}}/>
+                        <motion.div initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, delay: 0.3 }} className="whitespace-pre-wrap text-sm text-blue-chill-700 innerhtml" dangerouslySetInnerHTML={{ __html: patchNote.content }} />
                     </div>
                 </motion.div>
             ))}

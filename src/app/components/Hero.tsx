@@ -7,10 +7,12 @@ import { FaArrowUp } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { FaAngleRight } from "react-icons/fa";
 import { PiHandWithdraw } from "react-icons/pi";
+import { getLastPachNote } from "../utils/page";
 
 export default function Hero() {
     const [showScrollDown, setShowScrollDown] = useState(true);
     const scrollDownRef = useRef<HTMLDivElement>(null);
+    const [lastPatch, setLastPatch] = useState<String>();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -32,6 +34,14 @@ export default function Hero() {
         };
     }, []);
 
+    useEffect(() => {
+        async function getLastPatch(){
+            setLastPatch(await getLastPachNote());
+        }
+
+        getLastPatch();
+    }, []);
+
     const scrollToTop = () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
     };
@@ -47,10 +57,10 @@ export default function Hero() {
                 >
                     <div className="bg-blue-chill-300 p-2 rounded-full flex items-center justify-center">
                         <a
-                            href="/patchnotes"
+                            href={`/patchnotes#${lastPatch}`}
                             className="text-xs font-semibold text-blue-chill-900 flex items-center group"
                         >
-                            Beta v0.0.0
+                            {lastPatch}
                             <FaAngleRight className="ml-1 text-blue-chill-900 group-hover:rotate-90 transition-transform duration-300" />
                         </a>
                     </div>
@@ -105,7 +115,7 @@ export default function Hero() {
                     whileInView={{ opacity: showScrollDown ? 0 : 1, scale: showScrollDown ? 0.5 : 1 }}
                     transition={{ duration: 0.5 }}
                     onClick={scrollToTop}
-                    className="fixed bottom-4 right-4 rounded-full bg-blue-chill-600 p-3 text-white shadow-sm hover:bg-blue-chill-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-chill-600"
+                    className="fixed bottom-4 right-4 z-50 rounded-full bg-blue-chill-600 p-3 text-white shadow-sm hover:bg-blue-chill-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-chill-600"
                 >
                     <FaArrowUp className="text-xl" />
                 </motion.button>
