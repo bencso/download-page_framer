@@ -52,14 +52,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <meta name="theme-color" content="#f2f9f9" />
 
-        {/* Open Graph */}
         <meta property="og:title" content={meta.title} />
         <meta property="og:description" content={meta.description} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={meta.siteUrl} />
         <meta property="og:image" content={meta.image} />
 
-        {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={meta.title} />
         <meta name="twitter:description" content={meta.description} />
