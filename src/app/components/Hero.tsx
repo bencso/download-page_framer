@@ -7,7 +7,7 @@ import { FaArrowUp } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { FaAngleRight } from "react-icons/fa";
 import { PiHandWithdraw } from "react-icons/pi";
-import { getLastPachNote } from "../utils/page";
+import { getLastPachNote } from "../../lib/utils/files";
 
 export default function Hero() {
     const [showScrollDown, setShowScrollDown] = useState(true);

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Remarkable } from 'remarkable';
-import { getFiles } from '../utils/page';
+import { getFiles } from '../../lib/utils/files';
 
 interface PatchNote {
     filename: string;
