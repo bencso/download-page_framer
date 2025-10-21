@@ -4,6 +4,23 @@ import React, { useEffect, useRef, useState } from "react";
 import Navbar from "./components/Navbar";
 import "./globals.css";
 
+const meta = {
+  title: "Download Page — Framer Motion",
+  description:
+    "Download Page demo built with Next.js and Framer Motion — animated background, file downloads and versioned release notes.",
+  keywords: "download, framer motion, next.js, animation, release notes",
+  siteUrl: "https://bencso.hu",
+  image: "/og-image.png",
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  url: meta.siteUrl,
+  name: meta.title,
+  description: meta.description,
+};
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const [isVisible, setVisible] = useState(true);
   const gridRef = useRef<HTMLDivElement>(null);
@@ -26,9 +43,39 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
   return (
     <html lang="en">
+      <head>
+        <meta charSet="utf-8" />
+        <title>{meta.title}</title>
+        <meta name="description" content={meta.description} />
+        <meta name="keywords" content={meta.keywords} />
+        <meta name="robots" content="index,follow" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <meta name="theme-color" content="#f2f9f9" />
+
+        {/* Open Graph */}
+        <meta property="og:title" content={meta.title} />
+        <meta property="og:description" content={meta.description} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={meta.siteUrl} />
+        <meta property="og:image" content={meta.image} />
+
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={meta.title} />
+        <meta name="twitter:description" content={meta.description} />
+        <meta name="twitter:image" content={meta.image} />
+
+        <link rel="canonical" href={meta.siteUrl} />
+        <link rel="icon" href="/favicon.ico" />
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className="font-sans bg-[#f2f9f9] text-blue-chill-900">
         <BackgroundLayer isVisible={isVisible} gridRef={gridRef} />
-        <Navbar/>
+        <Navbar />
         <div className="relative z-10">{children}</div>
       </body>
     </html>
